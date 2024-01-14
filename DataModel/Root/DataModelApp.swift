@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct DataModelApp: App {
+    
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            UserProfileView()
         }
     }
 }
