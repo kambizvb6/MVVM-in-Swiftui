@@ -8,12 +8,18 @@
 import SwiftUI
 
 struct UserProfileView: View {
-//     @StateObject -> Use this on Creation or init
-//     @ObservedObject -> Use this for subView
     
+    // @StateObject -> Use this on Creation or init
+    // @ObservedObject -> Use this for subView
+    
+    
+    // ViewModel responsible for managing user data
     @StateObject var userViewModel = UserViewModel()
+    
+    // State variable for handling search text
     @State private var searchText = ""
     
+    // Computed property to filter user models based on search text
     private var searchResult: [UserModel] {
         searchText.isEmpty ? userViewModel.userModel : userViewModel.userModel.filter { user in
             user.userName.localizedCaseInsensitiveContains(searchText)
@@ -23,6 +29,7 @@ struct UserProfileView: View {
         NavigationStack{
             VStack{
                 List{
+                    // Display a loading indicator if data is still loading
                     if userViewModel.isLoading {
                         HStack{
                             Spacer()
@@ -30,6 +37,7 @@ struct UserProfileView: View {
                             Spacer()
                         }
                     } else {
+                        // Iterate through the filtered user models to display in the list
                         ForEach(searchResult) { user in
                             HStack{
                                 Image(user.userImage)
@@ -60,14 +68,17 @@ struct UserProfileView: View {
                                         .font(.footnote)
                                 }
                             }
+                            // Handle tap gesture on user cell
                             .onTapGesture {
                                 print("\(user.userName)")
                             }
                         }
+                        // Enable swipe-to-delete functionality
                         .onDelete(perform: userViewModel.deleteUser)
                     }
                 }
             }
+            // Add search functionality to the view
             .searchable(text: $searchText)
             .navigationTitle("User List")
             .navigationBarTitleDisplayMode(.large)
