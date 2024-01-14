@@ -2,7 +2,7 @@ SwiftUI MVVM User Profile View
 Overview:
 
 <p align="center">
-  <img width="200" align="center" src="https://github.com/kambizvb6/MVVM-in-Swiftui/blob/main/SwiftUI-MVVM-User-Profile.png" alt="demo"/>
+  <img width="300" align="center" src="https://github.com/kambizvb6/MVVM-in-Swiftui/blob/main/SwiftUI-MVVM-User-Profile.png" alt="demo"/>
 </p>
 
 This repository contains a SwiftUI project implementing a User Profile View using the MVVM (Model-View-ViewModel) architecture. The User Profile View displays a list of users with their profile images, names, checkmark badges, follower counts, and supports searching and deletion functionalities.
