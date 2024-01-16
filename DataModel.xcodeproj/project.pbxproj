@@ -57,8 +57,8 @@
 		0888F6792B2910E8006D8492 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				08A296572B57165A00436BB0 /* UserDetails */,
 				08A296562B57162C00436BB0 /* AllUsers */,
+				08A296572B57165A00436BB0 /* UserDetails */,
 				0889EA872B2B7969000EDE4E /* Root */,
 				0888F67E2B2910E9006D8492 /* Assets.xcassets */,
 				0888F6802B2910E9006D8492 /* Preview Content */,
