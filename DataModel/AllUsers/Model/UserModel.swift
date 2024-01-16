@@ -10,7 +10,7 @@ import Foundation
 struct UserModel: Hashable, Identifiable{
     
     let id : String = UUID().uuidString
-    let userImage: String
+    let userImage: String?
     let userName: String
     let userFullName: String
     let userFollower: Int

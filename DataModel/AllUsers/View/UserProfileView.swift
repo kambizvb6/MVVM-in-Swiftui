@@ -39,43 +39,49 @@ struct UserProfileView: View {
                     } else {
                         // Iterate through the filtered user models to display in the list
                         ForEach(searchResult) { user in
-                            HStack{
-                                Image(user.userImage)
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 48, height: 48)
-                                    .clipShape(Circle())
-                                    
-                                VStack(alignment: .leading, spacing: 0.0){
-                                    HStack(alignment: .center){
-                                        Text(user.userName)
-                                            .font(.subheadline)
-                                        Image(systemName: "checkmark.seal.fill")
-                                            .resizable()
-                                            .foregroundStyle(.blue)
-                                            .frame(width: 16, height: 16)
+                            NavigationLink(value: user) {
+                                HStack{
+                                    Image(user.userImage ?? "user1")
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 48, height: 48)
+                                        .clipShape(Circle())
+                                        
+                                    VStack(alignment: .leading, spacing: 0.0){
+                                        HStack(alignment: .center){
+                                            Text(user.userName)
+                                                .font(.subheadline)
+                                            Image(systemName: "checkmark.seal.fill")
+                                                .resizable()
+                                                .foregroundStyle(.blue)
+                                                .frame(width: 16, height: 16)
+                                        }
+                                        Text(user.userFullName)
+                                            .font(.footnote)
+                                            .foregroundStyle(.gray)
+                                        
                                     }
-                                    Text(user.userFullName)
-                                        .font(.footnote)
-                                        .foregroundStyle(.gray)
-                                    
+                                    Spacer()
+                                    VStack(alignment: .center, spacing: 0.0){
+                                        Text("\(user.userFollower)")
+                                            .font(.subheadline)
+                                        Text("Follower")
+                                            .font(.footnote)
+                                    }
                                 }
-                                Spacer()
-                                VStack(alignment: .center, spacing: 0.0){
-                                    Text("\(user.userFollower)")
-                                        .font(.subheadline)
-                                    Text("Follower")
-                                        .font(.footnote)
+                                // Handle tap gesture on user cell
+                                .onTapGesture {
+                                    print("\(user.userName)")
                                 }
-                            }
-                            // Handle tap gesture on user cell
-                            .onTapGesture {
-                                print("\(user.userName)")
                             }
                         }
                         // Enable swipe-to-delete functionality
                         .onDelete(perform: userViewModel.deleteUser)
                     }
+                }
+                .navigationDestination(for: UserModel.self) { user in
+                    UserDetailsView(userDetail: user)
+                        .navigationBarBackButtonHidden()
                 }
             }
             // Add search functionality to the view
